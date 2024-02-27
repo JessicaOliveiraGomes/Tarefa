@@ -3,6 +3,7 @@ package com.todo.controllers;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class TodoController {
 	
 	private final TodoService todoService;
 	
+	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@PostMapping
 	public ResponseEntity<TodoDTO> saveTodo(@RequestBody TodoDTO todo) {
 		return ResponseEntity.ok(todoService.saveTodo(todo));
