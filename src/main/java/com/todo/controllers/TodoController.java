@@ -38,9 +38,9 @@ public class TodoController {
 		return ResponseEntity.ok(todoService.getTodo());
 	}
 	
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<TodoDTO> updateTodo(@RequestBody TodoDTO todo) {
-		return ResponseEntity.ok(todoService.updateTodo(todo));
+		return ResponseEntity.ok().body(todoService.updateTodo(todo));
 	} 
 
 	@DeleteMapping("/{id}")

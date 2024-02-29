@@ -31,7 +31,7 @@ public class TodoService {
 		Todo entity = todoMapper.dtoToEntities(todo);
 		return todoMapper.entitiesToDTO(todoIRepository.save(entity));
 	}
-	
+
 	public void deleteTodo (Long id) {
 		todoIRepository.deleteById(id);
 	}
@@ -39,5 +39,14 @@ public class TodoService {
 	public List<TodoDTO> getTodoByLista() {
 		return todoMapper.entitiesToDTO(todoIRepository.findAll());
 	}
+	
+	public Todo getTodoById(Long id) {
+		return todoIRepository.findById(id).orElse(null);
+	}
+	
+	public TodoDTO getTodoByNome(String nomeTarefa) {
+		return todoMapper.entitiesToDTO(todoIRepository.findByNomeTarefa(nomeTarefa));
+	}
+	
 
 }
