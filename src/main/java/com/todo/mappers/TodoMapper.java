@@ -20,6 +20,7 @@ public class TodoMapper {
 			.data(entity.getData())
 			.lista(entity.getLista())
 			.concluido(entity.getConcluido())
+			.user(entity.getUser())
 			.build();
 	}
 	
@@ -31,6 +32,7 @@ public class TodoMapper {
 			.data(dto.getData())
 			.lista(dto.getLista())
 			.concluido(dto.getConcluido())
+			.user(dto.getUser())
 			.build();
 	}
 	
@@ -47,6 +49,7 @@ public class TodoMapper {
 					.data(entity.getData())
 					.lista(entity.getLista())
 					.concluido(entity.getConcluido())
+					.user(entity.getUser())
 					.build();
 			dtos.add(dto);
 		}

@@ -22,6 +22,10 @@ public class TodoService {
 		return todoMapper.entitiesToDTO(todoIRepository.findAll());
 	}
 	
+	public List<TodoDTO> getByUser(String id) {
+		return todoMapper.entitiesToDTO(todoIRepository.findByUser(id));
+	}
+	
 	public TodoDTO saveTodo (TodoDTO todo) {
 		Todo entity = todoMapper.dtoToEntities(todo);
 		return todoMapper.entitiesToDTO(todoIRepository.save(entity));

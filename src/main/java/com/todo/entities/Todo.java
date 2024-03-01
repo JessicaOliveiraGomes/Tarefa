@@ -26,6 +26,7 @@ public class Todo {
 	private LocalDateTime data;
 	private String lista;
 	private Boolean concluido;
+	private String user;
 	
 	
 }

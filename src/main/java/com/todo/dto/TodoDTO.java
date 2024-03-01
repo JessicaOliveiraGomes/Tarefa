@@ -21,5 +21,5 @@ public class TodoDTO implements Serializable {
 	private LocalDateTime data;
 	private String lista;
 	private Boolean concluido;
-
+	private String user;
 }
