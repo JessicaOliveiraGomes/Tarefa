@@ -25,11 +25,14 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-	
+class SecurityConfig {
+
+    private static final String GROUPS = "groups";
+    private static final String REALM_ACCESS_CLAIM = "realm_access";
+    private static final String ROLES_CLAIM = "roles";
+    
     private final KeycloakLogoutHandler keycloakLogoutHandler;
     
     SecurityConfig(KeycloakLogoutHandler keycloakLogoutHandler) {
@@ -59,6 +62,10 @@ public class SecurityConfig {
     	http
 
     		.authorizeHttpRequests(auth -> auth
+            .requestMatchers(new AntPathRequestMatcher("/customers*"))
+            .hasAnyAuthority("SCOPE_user")
+            .requestMatchers(new AntPathRequestMatcher("/"))
+            .permitAll()
             .anyRequest()
             .authenticated())
 	        .cors(cors -> cors.disable())
@@ -74,5 +81,4 @@ public class SecurityConfig {
         return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(
             Collectors.toList());
     }
-
 }
